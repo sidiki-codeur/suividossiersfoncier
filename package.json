@@ -2,13 +2,14 @@
   "name": "suivi-dossiers-fonciers",
   "version": "1.0.0",
   "description": "Application Electron pour le suivi des dossiers fonciers",
+  "author": "sidiki ouedraogo <sidikicodeur@email.com>",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "pack": "electron-packager . suivi-dossiers-fonciers --platform=win32 --arch=x64 --overwrite",
-    "build": "electron-builder --mac --win",
-    "build:win": "electron-builder --win",
-    "build:mac": "electron-builder --mac"
+    "build": "electron-builder --mac --win --publish never",
+    "build:win": "electron-builder --win --publish never",
+    "build:mac": "electron-builder --mac --publish never"
   },
   "devDependencies": {
     "electron": "^28.2.3",
