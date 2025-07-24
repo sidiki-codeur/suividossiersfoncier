@@ -1,0 +1,17 @@
+image: macos-monterey
+
+environment:
+  nodejs_version: "18"
+
+install:
+  - brew install node
+  - npm install
+
+build_script:
+  - npm run build
+
+artifacts:
+  - path: dist/*.dmg
+    name: mac-installer
+  - path: dist/*.exe
+    name: win-installer 
