@@ -6,7 +6,9 @@
   "scripts": {
     "start": "electron .",
     "pack": "electron-packager . suivi-dossiers-fonciers --platform=win32 --arch=x64 --overwrite",
-    "build": "electron-builder --mac --win"
+    "build": "electron-builder --mac --win",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac"
   },
   "devDependencies": {
     "electron": "^28.2.3",
