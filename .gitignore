@@ -1,0 +1,33 @@
+# Node
+node_modules/
+
+# Electron build output
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Electron packager/builder
+*.exe
+*.dmg
+*.app
+*.asar
+
+# Env
+.env
+.env.*
+
+# Misc
+*.log 

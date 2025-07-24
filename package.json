@@ -1,0 +1,36 @@
+{
+  "name": "suivi-dossiers-fonciers",
+  "version": "1.0.0",
+  "description": "Application Electron pour le suivi des dossiers fonciers",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-packager . suivi-dossiers-fonciers --platform=win32 --arch=x64 --overwrite",
+    "build": "electron-builder --mac --win"
+  },
+  "devDependencies": {
+    "electron": "^28.2.3",
+    "electron-packager": "^17.1.1",
+    "electron-builder": "^24.13.2"
+  },
+  "build": {
+    "appId": "com.suivi.dossiers.fonciers",
+    "productName": "Suivi Dossiers Fonciers",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "src/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "icon.png"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "icon.icns"
+    }
+  }
+}

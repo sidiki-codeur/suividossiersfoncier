@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUIVI DES DOSSIERS FONCIERS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <div class="container">
+
+
+        <div class="stats-container">
+            <div class="stat-card total">
+                <div class="stat-number" id="totalCount">0</div>
+                <div class="stat-label">Total dossiers</div>
+            </div>
+            <div class="stat-card pending">
+                <div class="stat-number" id="pendingCount">0</div>
+                <div class="stat-label">À traiter</div>
+            </div>
+            <div class="stat-card late">
+                <div class="stat-number" id="lateCount">0</div>
+                <div class="stat-label">En retard</div>
+            </div>
+            <div class="stat-card completed">
+                <div class="stat-number" id="completedCount">0</div>
+                <div class="stat-label">Traités</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-primary" onclick="openAddModal()">
+                ➕ Nouveau dossier
+            </button>
+            <button class="btn btn-success" onclick="exportToExcel()">
+                📊 Exporter vers Excel
+            </button>
+            <input type="text" id="searchInput" placeholder="Rechercher..." style="flex:1; max-width:260px; margin-left:10px;" oninput="applyFilters()">
+            <select id="statusFilter" onchange="applyFilters()" style="max-width:180px;">
+                <option value="">Tous les statuts</option>
+                <option value="a-traiter">À traiter</option>
+                <option value="dernier-jour">Dernier jour</option>
+                <option value="en-retard">En retard</option>
+                <option value="traite">Traités</option>
+            </select>
+        </div>
+
+        <div class="table-container">
+            <table id="filesTable">
+                <thead>
+                    <tr>
+                        <th>Date réception</th>
+                        <th>Client</th>
+                        <th>Référence cadastrale</th>
+                        <th>Situation</th>
+                        <th>Date sortie</th>
+                        <th>Date récupération</th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="filesTableBody">
+                </tbody>
+            </table>
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <h3>Aucun dossier enregistré</h3>
+                <p>Cliquez sur "Nouveau dossier" pour commencer</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour ajouter/modifier un dossier -->
+    <div id="fileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Nouveau dossier</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="fileForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="dateReception">Date de réception *</label>
+                            <input type="date" id="dateReception" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="clientName">Nom du client *</label>
+                            <input type="text" id="clientName" required placeholder="Nom complet du client">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="situation">Situation du dossier</label>
+                            <textarea id="situation" rows="3" placeholder="Description de la situation..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dateSortie">Date de sortie</label>
+                            <input type="date" id="dateSortie">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dateRecuperation">Date de récupération</label>
+                            <input type="date" id="dateRecuperation">
+                        </div>
+                    </div>
+
+                    <div class="cadastral-section">
+                        <h3>📍 Référence cadastrale</h3>
+                        <div class="cadastral-grid">
+                            <div class="form-group">
+                                <label for="parcelle">Parcelle</label>
+                                <input type="text" id="parcelle" placeholder="ex: 123">
+                            </div>
+                            <div class="form-group">
+                                <label for="ilot">Îlot</label>
+                                <input type="text" id="ilot" placeholder="ex: A">
+                            </div>
+                            <div class="form-group">
+                                <label for="section">Section</label>
+                                <input type="text" id="section" placeholder="ex: AB">
+                            </div>
+                            <div class="form-group">
+                                <label for="commune">Commune</label>
+                                <input type="text" id="commune" placeholder="Saaba">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancel" onclick="closeModal()">Annuler</button>
+                <button type="button" class="btn btn-primary" onclick="saveFile()">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
