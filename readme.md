@@ -46,3 +46,4 @@ Un outil web simple et robuste pour permettre à une assistante d’**enregistre
 - HTML5
 - CSS3
 - JavaScript (vanilla)"# suividossiersfoncier" 
+- Electron
