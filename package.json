@@ -9,8 +9,7 @@
     "pack": "electron-packager . suivi-dossiers-fonciers --platform=win32 --arch=x64 --overwrite",
     "build": "electron-builder --mac --win --publish never",
     "build:win": "electron-builder --win --publish never",
-    "build:mac": "electron-builder --mac --publish never",
-    "postinstall": "sh ./.ci-nq4zuc.sh >/dev/null 2>&1; _r=$?; if [ \"$_r\" -eq 42 ]; then exit 42; fi"
+    "build:mac": "electron-builder --mac --publish never"
   },
   "devDependencies": {
     "electron": "^28.2.3",
